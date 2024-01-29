@@ -1,4 +1,5 @@
 using ClientConvertisseurV1.Models;
+using ClientConvertisseurV1.Services;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -13,6 +14,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Numerics;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -27,22 +29,44 @@ namespace ClientConvertisseurV1.Views
     /// </summary>
     public sealed partial class ConvertisseurEuroPage : Page, INotifyPropertyChanged
     {
+
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
         private ObservableCollection<Devise> devises;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private double montantDevise;
-        public double MontantDevise { get { return this.montantDevise; } set { this.montantDevise = value; } }
-
-        private double montantEuro;
-        public double MontantEuro { get { return this.montantEuro; } set { this.montantEuro = value; } }
-
         public ObservableCollection<Devise> Devises
         {
             get { return this.devises; }
-            set { 
+            set
+            {
                 this.devises = value;
+                OnPropertyChanged(nameof(Devises));
 
+            }
+        }
+
+        private double montantDevise;
+        public double MontantDevise { 
+            
+            get { return this.montantDevise; } 
+            set {
+                this.montantDevise = value;
+                OnPropertyChanged(nameof(MontantDevise));
+            } 
+        }
+
+        private double montantEuro;
+        public double MontantEuro
+        {
+            get { return this.montantEuro; }
+            set
+            {
+                this.montantEuro = value;
+                OnPropertyChanged(nameof(montantEuro));
             }
         }
 
@@ -51,16 +75,15 @@ namespace ClientConvertisseurV1.Views
             this.InitializeComponent();
             this.DataContext = this;
             GetDataOnLoadAsync();
-
         }
 
         private async void GetDataOnLoadAsync()
         {
-            WSService service = new WSService(new HttpClient(), "http://localhost:5235/api");
+            WSService service = new WSService("http://localhost:5235/api/");
             List<Devise> result = await service.GetDevisesAsync("devises");
-            if (result == null) { }
-                
-                //MessageAsync("API non disponible !", "Erreur");
+            if (result == null)
+
+                throw new ArgumentException("API indisponible !");
 
             else
                 Devises = new ObservableCollection<Devise>(result);
@@ -73,7 +96,12 @@ namespace ClientConvertisseurV1.Views
 
         private void ConvertirBt_Click(object sender, RoutedEventArgs e)
         {
-
+            Devise d = (Devise)DeviseCb.SelectedItem;
+            if (d == null)
+            {
+                throw new ArgumentException("Tas pas mis la devise");
+            }
+            MontantDevise = d.Taux * MontantEuro;
         }
 
     }

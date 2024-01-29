@@ -1,4 +1,4 @@
-﻿using ClientConvertisseurV1.Services;
+﻿using ClientConvertisseurV2.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,18 +8,21 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClientConvertisseurV1.Models
+namespace ClientConvertisseurV2.Models
 {
     internal class WSService : IService
     {
 
+        private readonly HttpClient httpClient;
+
         //mon port: 5235
-        public WSService(HttpClient client, String uri)
+        public WSService(String uri)
         {
-            client.BaseAddress = new Uri(uri);
-            client.DefaultRequestHeaders.Accept.Clear();
-            
-            client.DefaultRequestHeaders.Accept.Add(
+            httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri(uri);
+            httpClient.DefaultRequestHeaders.Accept.Clear();
+
+            httpClient.DefaultRequestHeaders.Accept.Add(
             new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
@@ -27,7 +30,6 @@ namespace ClientConvertisseurV1.Models
         {
             try
             {
-                var httpClient = new HttpClient();
                 return await httpClient.GetFromJsonAsync<List<Devise>>(nomControleur);
             }
             catch (Exception)

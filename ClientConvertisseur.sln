@@ -5,6 +5,8 @@ VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientConvertisseurV1", "ClientConvertisseurV1\ClientConvertisseurV1.csproj", "{E3DB6F06-48DC-416D-80F4-FFEE4083251E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientConvertisseurV2", "ClientConvertisseurV2\ClientConvertisseurV2.csproj", "{D3018C13-17C6-49ED-B296-2E1826F19959}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM64 = Debug|ARM64
@@ -33,6 +35,24 @@ Global
 		{E3DB6F06-48DC-416D-80F4-FFEE4083251E}.Release|x86.ActiveCfg = Release|x86
 		{E3DB6F06-48DC-416D-80F4-FFEE4083251E}.Release|x86.Build.0 = Release|x86
 		{E3DB6F06-48DC-416D-80F4-FFEE4083251E}.Release|x86.Deploy.0 = Release|x86
+		{D3018C13-17C6-49ED-B296-2E1826F19959}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{D3018C13-17C6-49ED-B296-2E1826F19959}.Debug|ARM64.Build.0 = Debug|ARM64
+		{D3018C13-17C6-49ED-B296-2E1826F19959}.Debug|ARM64.Deploy.0 = Debug|ARM64
+		{D3018C13-17C6-49ED-B296-2E1826F19959}.Debug|x64.ActiveCfg = Debug|x64
+		{D3018C13-17C6-49ED-B296-2E1826F19959}.Debug|x64.Build.0 = Debug|x64
+		{D3018C13-17C6-49ED-B296-2E1826F19959}.Debug|x64.Deploy.0 = Debug|x64
+		{D3018C13-17C6-49ED-B296-2E1826F19959}.Debug|x86.ActiveCfg = Debug|x86
+		{D3018C13-17C6-49ED-B296-2E1826F19959}.Debug|x86.Build.0 = Debug|x86
+		{D3018C13-17C6-49ED-B296-2E1826F19959}.Debug|x86.Deploy.0 = Debug|x86
+		{D3018C13-17C6-49ED-B296-2E1826F19959}.Release|ARM64.ActiveCfg = Release|ARM64
+		{D3018C13-17C6-49ED-B296-2E1826F19959}.Release|ARM64.Build.0 = Release|ARM64
+		{D3018C13-17C6-49ED-B296-2E1826F19959}.Release|ARM64.Deploy.0 = Release|ARM64
+		{D3018C13-17C6-49ED-B296-2E1826F19959}.Release|x64.ActiveCfg = Release|x64
+		{D3018C13-17C6-49ED-B296-2E1826F19959}.Release|x64.Build.0 = Release|x64
+		{D3018C13-17C6-49ED-B296-2E1826F19959}.Release|x64.Deploy.0 = Release|x64
+		{D3018C13-17C6-49ED-B296-2E1826F19959}.Release|x86.ActiveCfg = Release|x86
+		{D3018C13-17C6-49ED-B296-2E1826F19959}.Release|x86.Build.0 = Release|x86
+		{D3018C13-17C6-49ED-B296-2E1826F19959}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
