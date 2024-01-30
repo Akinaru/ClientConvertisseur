@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ClientConvertisseurV2.ViewModels
 {
-    public class ConvertisseurEuroViewModel : ConvertisseurViewModelBase
+    public class ConvertisseurDeviseViewModel : ConvertisseurViewModelBase
     {
         protected override string ApiEndpoint => "devises";
 
@@ -21,7 +21,7 @@ namespace ClientConvertisseurV2.ViewModels
             {
                 MessageAsync("Tu n'as pas sélectionné de devise", "Erreur").Wait();
             }
-            MontantDevise = MontantEuro * (SelectedDevise?.Taux ?? 0);
+            MontantEuro = MontantDevise / (SelectedDevise?.Taux ?? 0);
         }
     }
 }

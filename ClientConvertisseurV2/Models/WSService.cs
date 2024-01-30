@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ClientConvertisseurV2.Models
 {
-    internal class WSService : IService
+    public class WSService : IService
     {
 
         private readonly HttpClient httpClient;

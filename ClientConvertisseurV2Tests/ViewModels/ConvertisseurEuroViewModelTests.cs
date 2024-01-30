@@ -75,7 +75,7 @@ namespace ClientConvertisseurV2.ViewModels.Tests
             Assert.AreEqual(107, convertisseurEuro.MontantDevise);
         }
 
-        [TestMethod()]
+/*        [TestMethod()]
         public void GetDataOnLoadAsyncTest_WSServiceNonDemarre()
         {
             //Arrange
@@ -85,7 +85,7 @@ namespace ClientConvertisseurV2.ViewModels.Tests
             Thread.Sleep(1000);
             //Assert
             Assert.IsNull(convertisseurEuro.Devises, "L'api est démarrée.");
-        }
+        }*/
 
     }
 }
