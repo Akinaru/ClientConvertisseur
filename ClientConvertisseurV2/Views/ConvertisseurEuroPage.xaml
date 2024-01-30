@@ -38,7 +38,8 @@
             DisplayMemberPath="NomDevise"
             ItemsSource="{Binding Devises, Mode=TwoWay}"
             RelativePanel.AlignHorizontalCenterWithPanel="True"
-            RelativePanel.Below="DeviseTblock" />
+            RelativePanel.Below="DeviseTblock"
+            SelectedItem="{Binding SelectedDevise, Mode=TwoWay}" />
         <Button
             Name="ConvertirBt"
             Width="250"

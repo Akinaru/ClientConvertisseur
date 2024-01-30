@@ -27,6 +27,8 @@ namespace ClientConvertisseurV2
     /// </summary>
     public partial class App : Application
     {
+        public static FrameworkElement MainRoot { get; private set; }
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -47,6 +49,7 @@ namespace ClientConvertisseurV2
             this.m_window.Content = rootFrame;
             m_window.Activate();
             rootFrame.Navigate(typeof(ConvertisseurEuroPage));
+            MainRoot = m_window.Content as FrameworkElement;
         }
 
         private Window m_window;

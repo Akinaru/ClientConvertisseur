@@ -13,6 +13,12 @@ namespace ClientConvertisseurV2.ViewModels
 {
     public class ConvertisseurEuroViewModel : ObservableObject
     {
+        public IRelayCommand BtnSetConversion { get; }
+        public ConvertisseurEuroViewModel()
+        {
+            GetDataOnLoadAsync();
+            BtnSetConversion = new RelayCommand(ActionSetConversion);
+        }
 
         private ObservableCollection<Devise> devises;
         public ObservableCollection<Devise> Devises
@@ -50,7 +56,13 @@ namespace ClientConvertisseurV2.ViewModels
         }
 
         private Devise selectedDevise;
-        public Devise SelectedDevise { }
+        public Devise SelectedDevise {
+            get { return this.selectedDevise;  }
+            set { 
+                this.selectedDevise = value; 
+                OnPropertyChanged();
+            }
+        }
 
         private async void GetDataOnLoadAsync()
         {
@@ -58,33 +70,36 @@ namespace ClientConvertisseurV2.ViewModels
             List<Devise> result = await service.GetDevisesAsync("devises");
             if (result == null)
 
-                await ShowError("erreur non !", "erreur la team");
+                await MessageAsync("API non disponible !", "Erreur");
 
             else
+            {
                 Devises = new ObservableCollection<Devise>(result);
+                SelectedDevise = Devises[0];
+            }
         }
 
-        private async Task ShowError(string v1, string v2)
+
+        private async Task MessageAsync(string message, string titre)
         {
-            ContentDialog noWifiDialog = new ContentDialog
+            ContentDialog contentDialog = new ContentDialog
             {
-                Title = v2,
-                Content = v1,
+                Title = titre,
+                Content = message,
                 CloseButtonText = "Ok"
             };
-
-            await noWifiDialog.ShowAsync();
+            contentDialog.XamlRoot = App.MainRoot.XamlRoot;
+            await contentDialog.ShowAsync();
         }
 
-        public IRelayCommand BtnSetConversion { get; }
-        public ConvertisseurEuroViewModel()
+
+        private async void ActionSetConversion()
         {
-            GetDataOnLoadAsync();
-            BtnSetConversion = new RelayCommand(ActionSetConversion);
-        }
-        private void ActionSetConversion()
-        {
-            MontantDevise = MontantEuro * ;
+            if(SelectedDevise is null)
+            {
+                await MessageAsync("Tu n'as pas séléctionné de devise", "Erreur");
+            }
+            MontantDevise = MontantEuro * SelectedDevise.Taux ;
         }
     }
 }
