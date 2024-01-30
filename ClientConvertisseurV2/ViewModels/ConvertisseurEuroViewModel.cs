@@ -64,7 +64,7 @@ namespace ClientConvertisseurV2.ViewModels
             }
         }
 
-        private async void GetDataOnLoadAsync()
+        public async void GetDataOnLoadAsync()
         {
             WSService service = new WSService("http://localhost:5235/api/");
             List<Devise> result = await service.GetDevisesAsync("devises");
@@ -93,7 +93,7 @@ namespace ClientConvertisseurV2.ViewModels
         }
 
 
-        private async void ActionSetConversion()
+        public async void ActionSetConversion()
         {
             if(SelectedDevise is null)
             {
